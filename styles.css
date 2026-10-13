@@ -1,0 +1,19 @@
+.font-script { font-family: 'Great Vibes', cursive; }
+.font-serif { font-family: 'Playfair Display', serif; }
+.font-sans { font-family: 'Poppins', sans-serif; }
+
+.gold-gradient {
+  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #A37E22 0%, #D4AF37 50%, #7F5E15 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: rgba(255, 254, 250, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 191, 99, 0.3);
+}

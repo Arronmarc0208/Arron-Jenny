@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kasal nina Arron at Jenny | Paanyaya sa Kasal</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind-config.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-cream-100 text-stone-800 font-sans antialiased selection:bg-gold-300 selection:text-gold-700">
+
+  <!-- Top Audio & Language Sticky Controller -->
+  <div class="fixed top-4 right-4 z-50 flex items-center gap-2">
+    <!-- Music Player Toggle -->
+    <button id="musicToggle" data-action="toggle-audio" class="glass-card text-gold-700 hover:text-gold-600 p-3 rounded-full shadow-lg border border-gold-300 transition-all flex items-center justify-center w-11 h-11 group">
+      <i id="musicIcon" class="fas fa-music text-base group-hover:scale-110 transition-transform"></i>
+    </button>
+    
+    <!-- Audio Element (synth ambient sound fallback) -->
+    <audio id="weddingAudio" loop preload="auto">
+      <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-112189.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Language Toggle Button -->
+    <button id="langBtn" data-action="toggle-language" class="glass-card text-gold-700 text-xs font-semibold uppercase tracking-wider px-3.5 py-2.5 rounded-full shadow-lg border border-gold-300 hover:bg-gold-500 hover:text-white transition-all">
+      <span id="langText">Tagalog</span> 🇵🇭
+    </button>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 w-full bg-cream-50/90 backdrop-blur-md z-40 border-b border-gold-200/60 py-3.5 px-6 hidden md:block">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <a href="#" class="font-script text-3xl gold-text-gradient font-bold">A & J</a>
+      <div class="space-x-6 text-xs uppercase tracking-widest text-stone-600 font-medium">
+        <a href="#story" class="hover:text-gold-600 transition" data-en="Our Story" data-tl="Aming Kwento">Our Story</a>
+        <a href="#venues" class="hover:text-gold-600 transition" data-en="Venues" data-tl="Simbahan & Hapag">Venues</a>
+        <a href="#entourage" class="hover:text-gold-600 transition" data-en="Entourage" data-tl="Entorahe">Entourage</a>
+        <a href="#dresscode" class="hover:text-gold-600 transition" data-en="Dress Code" data-tl="Kasuotan">Dress Code</a>
+        <a href="#gallery" class="hover:text-gold-600 transition" data-en="Gallery" data-tl="Litrato">Gallery</a>
+        <a href="#gift" class="hover:text-gold-600 transition" data-en="Gift Registry" data-tl="Handog">Gift Registry</a>
+        <a href="#guestbook" class="hover:text-gold-600 transition" data-en="Guestbook" data-tl="Bati at Mungkahi">Guestbook</a>
+      </div>
+      <a href="#rsvp" class="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white text-xs px-5 py-2.5 rounded-full font-semibold shadow-md transition-all uppercase tracking-wider" data-en="RSVP" data-tl="Mag-RSVP">RSVP</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex flex-col justify-center items-center text-center p-6 relative overflow-hidden bg-gradient-to-b from-cream-50 via-cream-100 to-cream-200 pt-16">
+    <!-- Decorative Floral Accent Rings -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full border-[30px] border-gold-200/30 blur-2xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full border-[30px] border-gold-300/30 blur-2xl pointer-events-none"></div>
+
+    <div class="z-10 max-w-3xl">
+      <p class="text-xs md:text-sm uppercase tracking-[0.3em] text-gold-700 font-semibold mb-3" data-en="Save Our Date" data-tl="I-save ang Aming Petsa">Save Our Date</p>
+      <h1 class="font-script text-6xl sm:text-8xl md:text-9xl gold-text-gradient my-2 drop-shadow-sm">Arron & Jenny</h1>
+      <p class="text-stone-600 font-serif italic text-base md:text-xl tracking-wide mb-8">
+        <span data-en="We're getting married in Capas, Tarlac and celebrating in Cuyapo, Nueva Ecija" data-tl="Ikakasal kami sa Capas, Tarlac at magdiriwang sa Cuyapo, Nueva Ecija">We're getting married in Capas, Tarlac and celebrating in Cuyapo, Nueva Ecija</span>
+      </p>
+
+      <div class="inline-block bg-white/70 backdrop-blur-sm border border-gold-300/60 rounded-2xl p-4 md:p-6 shadow-xl mb-8">
+        <p class="text-xs uppercase tracking-widest text-stone-500 font-semibold mb-3" data-en="September 16, 2027 • 3:00 PM" data-tl="Setyembre 16, 2027 • 3:00 ng Hapon">September 16, 2027 • 3:00 PM</p>
+        
+        <!-- Live Countdown Timer -->
+        <div id="countdown" class="grid grid-cols-4 gap-3 md:gap-6 text-stone-800">
+          <div class="flex flex-col items-center bg-cream-50/90 rounded-xl p-2.5 md:p-3 border border-gold-200">
+            <span id="cd-days" class="font-serif text-2xl md:text-4xl font-bold text-gold-700">00</span>
+            <span class="text-[10px] md:text-xs uppercase text-stone-500 tracking-wider" data-en="Days" data-tl="Araw">Days</span>
+          </div>
+          <div class="flex flex-col items-center bg-cream-50/90 rounded-xl p-2.5 md:p-3 border border-gold-200">
+            <span id="cd-hours" class="font-serif text-2xl md:text-4xl font-bold text-gold-700">00</span>
+            <span class="text-[10px] md:text-xs uppercase text-stone-500 tracking-wider" data-en="Hours" data-tl="Oras">Hours</span>
+          </div>
+          <div class="flex flex-col items-center bg-cream-50/90 rounded-xl p-2.5 md:p-3 border border-gold-200">
+            <span id="cd-minutes" class="font-serif text-2xl md:text-4xl font-bold text-gold-700">00</span>
+            <span class="text-[10px] md:text-xs uppercase text-stone-500 tracking-wider" data-en="Mins" data-tl="Mins">Mins</span>
+          </div>
+          <div class="flex flex-col items-center bg-cream-50/90 rounded-xl p-2.5 md:p-3 border border-gold-200">
+            <span id="cd-seconds" class="font-serif text-2xl md:text-4xl font-bold text-gold-700">00</span>
+            <span class="text-[10px] md:text-xs uppercase text-stone-500 tracking-wider" data-en="Secs" data-tl="Secs">Secs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#rsvp" class="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white font-semibold text-sm px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5" data-en="Confirm Attendance" data-tl="Mag-Kumpirma ng Pagdalo">Confirm Attendance</a>
+        <a href="#venues" class="bg-white hover:bg-gold-50 text-gold-700 border border-gold-300 font-semibold text-sm px-8 py-3.5 rounded-full shadow-md transition-all" data-en="View Venues" data-tl="Tingnan ang Lugar">View Venues</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section id="story" class="py-20 px-6 max-w-4xl mx-auto text-center">
+    <div class="inline-block p-2 rounded-full bg-gold-100 text-gold-600 mb-3"><i class="fas fa-heart text-sm"></i></div>
+    <h2 class="font-script text-5xl md:text-6xl text-gold-700 mb-2" data-en="Our Love Story" data-tl="Ang Aming Kwento ng Pag-Ibig">Our Love Story</h2>
+    <div class="w-16 h-0.5 bg-gold-400 mx-auto mb-8"></div>
+    
+    <div class="glass-card rounded-3xl p-8 md:p-12 shadow-xl border border-gold-200 relative">
+      <p class="text-stone-700 leading-relaxed text-base md:text-lg font-serif italic mb-6" data-en="“Two souls with but a single thought, two hearts that beat as one.”" data-tl="“Dalawang kaluluwang nag-iisip nang iisa, dalawang pusong sabay na tumitibok.”">
+        “Two souls with but a single thought, two hearts that beat as one.”
+      </p>
+      <p class="text-stone-600 leading-relaxed text-sm md:text-base font-light" data-en="From college study dates in Taft to coffee runs in Makati, six years of laughter, late-night talks, and shared dreams have led us here. We are so excited to step into this new chapter with the people who mean the world to us." data-tl="Mula sa mga kwentuhan sa aralan hanggang sa mga paboritong kainan, ang anim na taon ng halakhak, pangarap, at pagmamahalan ay humantong sa sandaling ito. Sobrang galak naming simulan ang bagong kabanatang ito kasama kayong lahat.">
+        From college study dates in Taft to coffee runs in Makati, six years of laughter, late-night talks, and shared dreams have led us here. We are so excited to step into this new chapter with the people who mean the world to us.
+      </p>
+    </div>
+  </section>
+
+  <!-- Venues & Directions -->
+  <section id="venues" class="py-20 bg-cream-200/60 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="font-script text-5xl md:text-6xl text-gold-700 mb-2" data-en="When & Where" data-tl="Saan at Kailan">When & Where</h2>
+        <p class="text-stone-500 text-xs uppercase tracking-widest font-semibold" data-en="Ceremony & Reception Details" data-tl="Mga Detalye ng Kasal at Hapag">Ceremony & Reception Details</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Ceremony -->
+        <div class="bg-cream-50 rounded-3xl p-8 shadow-xl border border-gold-200 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-600 text-xl mb-4">⛪</div>
+            <h3 class="font-serif text-2xl font-bold text-stone-800 mb-1" data-en="The Ceremony" data-tl="Ang Kasal (Simbahan)">The Ceremony</h3>
+            <p class="text-gold-600 text-sm font-semibold mb-4">3:00 PM PHT</p>
+            <p class="text-stone-700 font-medium text-base">Lokal ng Capas</p>
+            <p class="text-stone-500 text-xs mb-6">Capas, Tarlac, Philippines</p>
+          </div>
+          
+          <div class="space-y-3">
+            <button data-map="ceremonyMap" class="w-full bg-white hover:bg-gold-50 border border-gold-300 text-gold-700 text-xs font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2">
+              <i class="fas fa-map-marked-alt"></i> <span data-en="Toggle Interactive Map" data-tl="I-toggle ang Mapa">Toggle Interactive Map</span>
+            </button>
+            <div id="ceremonyMap" class="hidden rounded-xl overflow-hidden border border-gold-200 h-48 shadow-inner">
+              <iframe class="w-full h-full" src="https://maps.google.com/maps?q=Lokal%20ng%20Capas%2C%20Capas%2C%20Tarlac&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reception -->
+        <div class="bg-cream-50 rounded-3xl p-8 shadow-xl border border-gold-200 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-600 text-xl mb-4">🥂</div>
+            <h3 class="font-serif text-2xl font-bold text-stone-800 mb-1" data-en="The Reception" data-tl="Ang Pagdiriwang (Hapag)">The Reception</h3>
+            <p class="text-gold-600 text-sm font-semibold mb-4">6:00 PM PHT</p>
+            <p class="text-stone-700 font-medium text-base">Sirmata</p>
+            <p class="text-stone-500 text-xs mb-6">Cuyapo, Nueva Ecija, Philippines</p>
+          </div>
+
+          <div class="space-y-3">
+            <button data-map="receptionMap" class="w-full bg-white hover:bg-gold-50 border border-gold-300 text-gold-700 text-xs font-semibold py-3 rounded-xl transition flex items-center justify-center gap-2">
+              <i class="fas fa-map-marked-alt"></i> <span data-en="Toggle Interactive Map" data-tl="I-toggle ang Mapa">Toggle Interactive Map</span>
+            </button>
+            <div id="receptionMap" class="hidden rounded-xl overflow-hidden border border-gold-200 h-48 shadow-inner">
+              <iframe class="w-full h-full" src="https://maps.google.com/maps?q=Sirmata%2C%20Cuyapo%2C%20Nueva%20Ecija&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Entourage Grid with Category Filters -->
+  <section id="entourage" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="font-script text-5xl md:text-6xl text-gold-700 mb-2" data-en="Wedding Entourage" data-tl="Ang Entorahe">Wedding Entourage</h2>
+      <p class="text-stone-500 text-xs uppercase tracking-widest font-semibold" data-en="Our Beloved Sponsors & Entourage" data-tl="Ang Aming mga Gabay at Kasama sa Altar">Our Beloved Sponsors & Entourage</p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10">
+      <button data-filter="all" class="ent-btn active bg-gold-600 text-white text-xs px-4 py-2 rounded-full font-medium transition-all shadow-sm" data-en="All" data-tl="Lahat">All</button>
+      <button data-filter="sponsors" class="ent-btn bg-white border border-gold-300 text-stone-700 hover:bg-gold-50 text-xs px-4 py-2 rounded-full font-medium transition-all" data-en="Principal Sponsors" data-tl="Mga Ninong at Ninang">Principal Sponsors</button>
+      <button data-filter="honors" class="ent-btn bg-white border border-gold-300 text-stone-700 hover:bg-gold-50 text-xs px-4 py-2 rounded-full font-medium transition-all" data-en="Primary Entourage" data-tl="Maid of Honor & Best Man">Primary Entourage</button>
+      <button data-filter="secondary" class="ent-btn bg-white border border-gold-300 text-stone-700 hover:bg-gold-50 text-xs px-4 py-2 rounded-full font-medium transition-all" data-en="Bridesmaids & Groomsmen" data-tl="Abay at Magsasama">Bridesmaids & Groomsmen</button>
+    </div>
+
+    <!-- Grid Container -->
+    <div id="entourageGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Principal Sponsors -->
+      <div class="ent-card sponsors glass-card p-6 rounded-2xl text-center border border-gold-200 shadow-md">
+        <span class="text-[10px] uppercase tracking-widest text-gold-600 font-bold bg-gold-100 px-3 py-1 rounded-full">Principal Sponsor</span>
+        <h4 class="font-serif text-lg font-bold text-stone-800 mt-3">Gov. Ramon & Mrs. Elena Santos</h4>
+        <p class="text-xs text-stone-500 italic mt-1">Ninong at Ninang sa Kasal</p>
+      </div>
+      <div class="ent-card sponsors glass-card p-6 rounded-2xl text-center border border-gold-200 shadow-md">
+        <span class="text-[10px] uppercase tracking-widest text-gold-600 font-bold bg-gold-100 px-3 py-1 rounded-full">Principal Sponsor</span>
+        <h4 class="font-serif text-lg font-bold text-stone-800 mt-3">Dr. Alejandro & Mrs. Victoria Reyes</h4>
+        <p class="text-xs text-stone-500 italic mt-1">Ninong at Ninang sa Kasal</p>
+      </div>
+
+      <!-- Honors -->
+      <div class="ent-card honors glass-card p-6 rounded-2xl text-center border border-gold-200 shadow-md">
+        <span class="text-[10px] uppercase tracking-widest text-gold-600 font-bold bg-gold-100 px-3 py-1 rounded-full">Maid of Honor</span>
+        <h4 class="font-serif text-lg font-bold text-stone-800 mt-3">Camille Sofia Alonzo</h4>
+        <p class="text-xs text-stone-500 italic mt-1">Sister of the Bride</p>
+      </div>
+      <div class="ent-card honors glass-card p-6 rounded-2xl text-center border border-gold-200 shadow-md">
+        <span class="text-[10px] uppercase tracking-widest text-gold-600 font-bold bg-gold-100 px-3 py-1 rounded-full">Best Man</span>
+        <h4 class="font-serif text-lg font-bold text-stone-800 mt-3">Gabriel Mateo Cruz</h4>
+        <p class="text-xs text-stone-500 italic mt-1">Brother of the Groom</p>
+      </div>
+
+      <!-- Secondary -->
+      <div class="ent-card secondary glass-card p-6 rounded-2xl text-center border border-gold-200 shadow-md">
+        <span class="text-[10px] uppercase tracking-widest text-gold-600 font-bold bg-gold-100 px-3 py-1 rounded-full">Bridesmaid</span>
+        <h4 class="font-serif text-lg font-bold text-stone-800 mt-3">Isabella Bianca Torres</h4>
+        <p class="text-xs text-stone-500 italic mt-1">College Best Friend</p>
+      </div>
+      <div class="ent-card secondary glass-card p-6 rounded-2xl text-center border border-gold-200 shadow-md">
+        <span class="text-[10px] uppercase tracking-widest text-gold-600 font-bold bg-gold-100 px-3 py-1 rounded-full">Groomsman</span>
+        <h4 class="font-serif text-lg font-bold text-stone-800 mt-3">Lucas Miguel Tan</h4>
+        <p class="text-xs text-stone-500 italic mt-1">High School Best Friend</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dress Code Section -->
+  <section id="dresscode" class="py-20 bg-cream-200/50 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="font-script text-5xl md:text-6xl text-gold-700 mb-2" data-en="Attire & Dress Code" data-tl="Gabay sa Kasuotan">Attire & Dress Code</h2>
+      <p class="text-stone-600 text-sm md:text-base font-light mb-8" data-en="Formal / Modern Filipiniana & Barong Tagalog" data-tl="Formal / Modernong Filipiniana at Barong Tagalog">Formal / Modern Filipiniana & Barong Tagalog</p>
+
+      <!-- Color Swatches -->
+      <div class="bg-cream-50 p-8 rounded-3xl shadow-xl border border-gold-200 mb-6">
+        <p class="text-xs uppercase tracking-widest text-stone-500 font-semibold mb-6" data-en="Wedding Color Palette" data-tl="Paleta ng mga Kulay">Wedding Color Palette</p>
+        <div class="flex flex-wrap justify-center gap-4 md:gap-8">
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 rounded-full bg-[#7F5E15] shadow-lg border-2 border-white"></div>
+            <span class="text-xs font-medium text-stone-700 mt-2">Deep Gold</span>
+            <span class="text-[10px] text-stone-400">#7F5E15</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 rounded-full bg-[#E2BF63] shadow-lg border-2 border-white"></div>
+            <span class="text-xs font-medium text-stone-700 mt-2">Champagne</span>
+            <span class="text-[10px] text-stone-400">#E2BF63</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 rounded-full bg-[#F3EFE6] shadow-lg border-2 border-stone-300"></div>
+            <span class="text-xs font-medium text-stone-700 mt-2">Warm Cream</span>
+            <span class="text-[10px] text-stone-400">#F3EFE6</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 rounded-full bg-[#4A2828] shadow-lg border-2 border-white"></div>
+            <span class="text-xs font-medium text-stone-700 mt-2">Rosewood</span>
+            <span class="text-[10px] text-stone-400">#4A2828</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-stone-500 italic" data-en="Gentlemen: Barong Tagalog with dark trousers. Ladies: Formal gown in palette shades." data-tl="Mga Ginoo: Barong Tagalog at maitim na pantalon. Mga Ginang: Pormal na kasuotan ayon sa paleta.">Gentlemen: Barong Tagalog with dark trousers. Ladies: Formal gown in palette shades.</p>
+    </div>
+  </section>
+
+  <!-- Interactive Photo Gallery -->
+  <section id="gallery" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="font-script text-5xl md:text-6xl text-gold-700 mb-2" data-en="Pre-Wedding Gallery" data-tl="Mga Larawan ng Pagmamahalan">Pre-Wedding Gallery</h2>
+      <p class="text-stone-500 text-xs uppercase tracking-widest font-semibold" data-en="Memories from our Engagement Photoshoot" data-tl="Mga Alaala Mula sa Aming Photoshoot">Memories from our Engagement Photoshoot</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div data-gallery-src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="group relative overflow-hidden rounded-2xl cursor-pointer aspect-square shadow-md border border-gold-200">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Engagement Shoot 1">
+        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white"><i class="fas fa-search-plus text-2xl"></i></div>
+      </div>
+      <div data-gallery-src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" class="group relative overflow-hidden rounded-2xl cursor-pointer aspect-square shadow-md border border-gold-200">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Engagement Shoot 2">
+        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white"><i class="fas fa-search-plus text-2xl"></i></div>
+      </div>
+      <div data-gallery-src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" class="group relative overflow-hidden rounded-2xl cursor-pointer aspect-square shadow-md border border-gold-200">
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Engagement Shoot 3">
+        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white"><i class="fas fa-search-plus text-2xl"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Lightbox Modal -->
+  <div id="galleryModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-md">
+    <button data-action="close-gallery" class="absolute top-6 right-6 text-white text-3xl hover:text-gold-300"><i class="fas fa-times"></i></button>
+    <img id="modalImg" src="" class="max-w-full max-h-[85vh] rounded-xl shadow-2xl border-2 border-gold-300">
+  </div>
+
+  <!-- RSVP Form Section -->
+  <section id="rsvp" class="py-20 bg-gradient-to-b from-stone-900 to-stone-800 text-white px-6">
+    <div class="max-w-xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="font-script text-6xl text-gold-300 mb-2">RSVP</h2>
+        <p class="text-xs uppercase tracking-widest text-gold-200/80" data-en="Kindly confirm your attendance" data-tl="Pakikumpirma ang Inyong Pagdalo">Kindly confirm your attendance</p>
+      </div>
+
+      <div class="mb-6">
+        <label for="guestLookup" class="block text-xs uppercase tracking-wider text-gold-200 mb-2" data-en="Search your invited name" data-tl="Hanapin ang pangalan mo sa listahan">Search your invited name</label>
+        <input type="search" id="guestLookup" list="invitedGuestOptions" autocomplete="off" placeholder="Ilagay ang buong pangalan" class="w-full px-4 py-3 rounded-xl bg-stone-900/60 border border-gold-400/40 text-white placeholder-stone-400 focus:outline-none focus:border-gold-300 text-sm">
+        <datalist id="invitedGuestOptions"></datalist>
+        <p id="guestLookupMessage" role="status" aria-live="polite" class="mt-2 text-xs text-gold-200/80" data-en="Type your full name to check the invitation list." data-tl="Ilagay ang buong pangalan para hanapin sa listahan.">Ilagay ang buong pangalan para hanapin sa listahan.</p>
+      </div>
+
+      <div id="rsvpAccess" class="hidden">
+      <form id="rsvpForm" class="space-y-4 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-gold-400/30 shadow-2xl">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gold-200 mb-1" data-en="Full Name" data-tl="Buong Pangalan">Full Name</label>
+          <input type="text" id="rsvpName" readonly required class="w-full px-4 py-3 rounded-xl bg-stone-900/60 border border-gold-400/40 text-white placeholder-stone-400 focus:outline-none focus:border-gold-300 text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gold-200 mb-1" data-en="Attendance Status" data-tl="Katayuan ng Pagdalo">Attendance Status</label>
+          <select id="rsvpStatus" class="w-full px-4 py-3 rounded-xl bg-stone-900/80 border border-gold-400/40 text-white focus:outline-none focus:border-gold-300 text-sm">
+            <option value="Joyfully Accepts" data-en="Joyfully Accepts 🎉" data-tl="Masayang Dadalo! 🎉">Joyfully Accepts 🎉</option>
+            <option value="Regretfully Declines" data-en="Regretfully Declines 💔" data-tl="Hindi Makakadalo 💔">Regretfully Declines 💔</option>
+          </select>
+        </div>
+
+        <div>
+            <label class="block text-xs uppercase tracking-wider text-gold-200 mb-1" data-en="Dietary Needs" data-tl="Dietary Needs">Dietary Needs</label>
+            <input type="text" id="rsvpDiet" placeholder="e.g. Halal, Vegan" class="w-full px-4 py-3 rounded-xl bg-stone-900/60 border border-gold-400/40 text-white placeholder-stone-500 focus:outline-none focus:border-gold-300 text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-gold-200 mb-1" data-en="Song Request for Reception" data-tl="Mungkahi ng Kanta sa Hapag">Song Request for Reception</label>
+          <input type="text" id="rsvpSong" placeholder="Artist - Song Title" class="w-full px-4 py-3 rounded-xl bg-stone-900/60 border border-gold-400/40 text-white placeholder-stone-500 focus:outline-none focus:border-gold-300 text-sm">
+        </div>
+
+        <button type="submit" class="w-full bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-500 hover:to-gold-700 text-stone-900 font-bold py-3.5 rounded-xl transition duration-300 shadow-lg mt-4 text-sm uppercase tracking-wider" data-en="Submit RSVP" data-tl="I-submit ang RSVP">Submit RSVP</button>
+      </form>
+
+      <div id="rsvpAlert" class="hidden mt-4 p-4 bg-emerald-900/80 border border-emerald-500 text-emerald-200 rounded-2xl text-center text-sm font-medium">
+        ✨ <span data-en="Thank you! Your response has been recorded." data-tl="Maraming salamat! Naipasa na ang iyong tugon.">Thank you! Your response has been recorded.</span>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Gift Registry with Copyable GCash / Bank buttons -->
+  <section id="gift" class="py-20 px-6 max-w-4xl mx-auto text-center">
+    <h2 class="font-script text-5xl md:text-6xl text-gold-700 mb-2" data-en="Gift Registry" data-tl="Handog at Pasasalamat">Gift Registry</h2>
+    <div class="w-16 h-0.5 bg-gold-400 mx-auto mb-6"></div>
+    <p class="text-stone-600 text-sm md:text-base font-light mb-10 max-w-2xl mx-auto" data-en="Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, a monetary blessing toward our future home would be deeply appreciated." data-tl="Ang inyong pagdalo ang pinakamahalagang regalo sa aming kasal. Ngunit kung nais ninyong mag-abot ng karagdagang biyaya para sa aming hinaharap, taos-puso namin itong tatanggapin.">
+      Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, a monetary blessing toward our future home would be deeply appreciated.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-6">
+      <!-- GCash Card -->
+      <div class="glass-card p-6 rounded-3xl border border-gold-300 shadow-lg flex flex-col justify-between">
+        <div>
+          <div class="text-3xl mb-2 text-blue-600"><i class="fas fa-mobile-alt"></i></div>
+          <h3 class="font-serif text-xl font-bold text-stone-800">GCash</h3>
+          <p class="text-xs text-stone-500 mb-4">Account Name: Jenny</p>
+          <div class="bg-cream-100 p-3 rounded-xl border border-gold-200 font-mono text-stone-800 text-lg font-bold tracking-wider mb-4">
+            0917 123 4567
+          </div>
+        </div>
+        <button data-copy-text="09171234567" data-copy-label="GCash" class="w-full bg-gold-500 hover:bg-gold-600 text-white text-xs font-semibold py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+          <i class="far fa-copy"></i> <span data-en="Copy GCash Number" data-tl="Kopyahin ang GCash">Copy GCash Number</span>
+        </button>
+      </div>
+
+      <!-- Bank Transfer Card -->
+      <div class="glass-card p-6 rounded-3xl border border-gold-300 shadow-lg flex flex-col justify-between">
+        <div>
+          <div class="text-3xl mb-2 text-gold-600"><i class="fas fa-university"></i></div>
+          <h3 class="font-serif text-xl font-bold text-stone-800">BPI Savings</h3>
+          <p class="text-xs text-stone-500 mb-4">Account Name: Arron</p>
+          <div class="bg-cream-100 p-3 rounded-xl border border-gold-200 font-mono text-stone-800 text-lg font-bold tracking-wider mb-4">
+            1234 5678 90
+          </div>
+        </div>
+        <button data-copy-text="1234567890" data-copy-label="BPI Account" class="w-full bg-gold-500 hover:bg-gold-600 text-white text-xs font-semibold py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+          <i class="far fa-copy"></i> <span data-en="Copy Bank Account" data-tl="Kopyahin ang Bank Account">Copy Bank Account</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Guestbook / Message Wall -->
+  <section id="guestbook" class="py-20 bg-cream-200/50 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="font-script text-5xl md:text-6xl text-gold-700 mb-2" data-en="Digital Guestbook" data-tl="Mga Pagbati at Mungkahi">Digital Guestbook</h2>
+        <p class="text-stone-500 text-xs uppercase tracking-widest font-semibold" data-en="Leave a wish for the happy couple" data-tl="Mag-iwan ng Bati para sa Mag-asawa">Leave a wish for the happy couple</p>
+      </div>
+
+      <!-- Message Form -->
+      <form id="msgForm" class="glass-card p-6 rounded-3xl border border-gold-300 shadow-lg mb-10 space-y-4">
+        <div class="grid md:grid-cols-2 gap-4">
+          <input type="text" id="msgName" placeholder="Your Name" required class="px-4 py-3 rounded-xl border border-gold-200 focus:outline-none focus:ring-2 focus:ring-gold-400 text-sm">
+          <input type="text" id="msgRelation" placeholder="Relation (e.g. High School Friend, Ninang)" class="px-4 py-3 rounded-xl border border-gold-200 focus:outline-none focus:ring-2 focus:ring-gold-400 text-sm">
+        </div>
+        <textarea id="msgContent" rows="3" placeholder="Write your well-wishes here..." required class="w-full px-4 py-3 rounded-xl border border-gold-200 focus:outline-none focus:ring-2 focus:ring-gold-400 text-sm"></textarea>
+        <button type="submit" class="bg-gold-600 hover:bg-gold-700 text-white font-semibold text-xs px-6 py-3 rounded-xl transition shadow-md uppercase tracking-wider" data-en="Post Well-Wish" data-tl="I-post ang Pagbati">Post Well-Wish</button>
+      </form>
+
+      <!-- Message Wall List -->
+      <div id="messageWall" class="space-y-4">
+        <div class="bg-cream-50 p-5 rounded-2xl border border-gold-200 shadow-sm">
+          <div class="flex justify-between items-center mb-2">
+            <h5 class="font-serif font-bold text-stone-800">Tita Baby & Tito Boy</h5>
+            <span class="text-[10px] text-gold-600 font-semibold bg-gold-100 px-2.5 py-1 rounded-full">Ninong & Ninang</span>
+          </div>
+          <p class="text-stone-600 text-sm italic">“Best wishes Arron and Jenny! May your love grow stronger with each passing year.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 bg-stone-900 text-stone-400 text-center px-6 text-xs border-t border-gold-500/20">
+    <p class="font-script text-4xl text-gold-300 mb-2">Arron & Jenny</p>
+    <p class="tracking-widest uppercase mb-4">#ArronFoundHisJenny • 09.16.27</p>
+    <p class="text-stone-600">Handcrafted with ❤️ for Philippine Weddings</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
